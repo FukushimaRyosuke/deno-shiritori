@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Let's jyanken</title>
+</head>
+<body>
+    <section class="score-section">
+        <div>
+            <h1 class="head">
+                じゃんけんゲーム
+            </h1>
+        </div>
+        <div class="select">
+            <ul class="jyanken">
+                <li class="image"><img src="/image/gu-.png" alt="グー" class="gu-" id="gu-image"></li>
+                <li class="image"><img src="/image/pa-.png" alt="パー" class="pa-" id="pa-image"></li>
+                <li class="image"><img src="/image/tyoki.png" alt="チョキ" class="tyoki" id="tyoki-image"></li>
+            </ul>
+            <h2>自分が出す手を選んでください</h2>
+        </div>
+        <div class="result" id="result">text</div>
+        <div class="score">
+
+        </div>
+    </section>
+
+    <hr class="line">
+    <div>
+        <h1 class="result_word" id="result-word"></h1>
+    </div>
+
+    <section class="image-section">
+        <div>
+            <ul class="display-jyanken">
+                <li><img src="/image/gu-.png" alt="image" class="player-image" id="player-image"></li>
+                <h2 class="vs">VS</h2>
+                <li><img src="/image/tyoki.png" alt="image" class="auto-image" id="cpu-image"></li>
+            </ul>
+            <div class="name">
+                <h2 class="you">YOU</h2>
+                <h2 class="cpu">CPU</h2>
+            </div>
+        </div>
+    </section>
+
+    <script src="./script.js"></script>
+</body>
+</html>

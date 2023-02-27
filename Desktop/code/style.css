@@ -1,0 +1,91 @@
+body {
+    background: rgb(239, 239, 68);
+}
+
+.score-section {
+    text-align: center;
+}
+
+.jyanken {
+    display: inline-flex;
+    list-style: none;
+    margin: 0 auto;
+}
+
+.gu-, .pa-, .tyoki {
+    width: 70%;
+}
+
+
+.head {
+    font-size: 45px;
+    margin: 10px 200px;
+    padding: 5px 10px;
+    background: rgb(230, 159, 159);
+    border-radius: 50px;
+}
+
+.line {
+    border-color: black;
+}
+
+.result_word {
+    text-align: center;
+    font-size: 40px;
+}
+
+.image-section {
+    display: block;
+    text-align: center;
+    margin: 20px;
+    padding: 50px;
+
+}
+
+.player-image {
+    padding: 10px;
+}
+
+.display-jyanken {
+    display: inline-flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+.vs {
+    margin: 0 80px;
+}
+
+.select {
+    display: block;
+    padding: 5px;
+}
+
+.button {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: aliceblue;
+    width: 5%;
+    height: 30px;
+    cursor: pointer;
+}
+
+.head-button {
+    padding:0 70px;
+    margin: 10px;
+}
+
+.name{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.you, .cpu{
+    text-align: center;
+    justify-content: center;
+}
