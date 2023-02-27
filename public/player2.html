@@ -100,20 +100,19 @@
       let count = 0;
 
       window.onload = async (event) => {
-        await fetch("/shiritori", {
+        await fetch("/shiritori2", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nextWord:"りんご", fullword })
       });
-      const response = await fetch("/shiritori");
+      const response = await fetch("/shiritori2");
       const previousWord = await response.text();
       console.log(previousWord);
       para.innerText = `前の単語：${previousWord}`; 
-    
     };
 
     document.querySelector("#start").onclick = async (event) => {
-        await fetch("/shiritori", {
+        await fetch("/shiritori2", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nextWord:"りんご", fullword })
@@ -121,14 +120,14 @@
       while(historyBody.firstChild){
           historyBody.removeChild(historyBody.firstChild);
       }
-      const response = await fetch("/shiritori");
+      const response = await fetch("/shiritori2");
       const previousWord = await response.text();
       para.innerText = `前の単語：${previousWord}`; 
     };
 
     document.querySelector("#nextWordSendButton").onclick = async (event) => {
       const nextWord = document.querySelector("#nextWordInput").value;
-      const response = await fetch("/shiritori", {
+      const response = await fetch("/shiritori2", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nextWord, fullword })
