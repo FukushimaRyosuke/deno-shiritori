@@ -6,6 +6,7 @@ const hiraganas = ['あじあ', 'かい', 'さとう', 'あぶらえ', 'かお',
 'あす', 'らいせ', 'さんそ', 'さんた', 'おせち', 'させつ', 'からて', 'あいすすけーと'];
 let num;
 let previousWord;
+let pre;
 const hiragana = /^[\u002D+\u3041-\u3093+\u30FC]+$/u;
 
 
@@ -20,14 +21,19 @@ serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
 
+  if(req.method === "GET" && pathname === "/kakunin"){
+    pre = previousWord;
+    return new Response(pre);
+  }
 
 
-  if (req.method === "GET" && pathname === "/shiritori") {
+
+  if ((req.method === "GET" && pathname === "/shiritori")||(req.method === "GET" && pathname === "/shiritori2")) {
     num = random(0, 20);
     previousWord = hiraganas[num];
     return new Response(previousWord);
   }
-  if (req.method === "POST" && pathname === "/shiritori") {
+  if ((req.method === "POST" && pathname === "/shiritori")||(req.method === "POST" && pathname === "/shiritori2")) {
     const requestJson = await req.json();
     const nextWord = requestJson.nextWord;
     const word = requestJson.fullword;

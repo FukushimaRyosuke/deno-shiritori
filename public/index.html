@@ -96,8 +96,49 @@
       const history= document.getElementById("history");
       const historyBody = document.getElementById("history-body");
       const historyButton = document.getElementById("history-button");
+      let pre;
       let fullword = [];
       let count = 0;
+
+      // const o = asnyc () => {
+      //   const response = await fetch("/shiritori");
+      //   const json = await response.json();
+      //   console.log(json);
+      // };
+
+
+    //   const o = async (event) => {
+    //   const response = await fetch("/shiritori2");
+    //   const p= await response.text();
+    //   console.log(p);
+    //   // para.innerText = `前の単語：${previousWord}`; 
+    
+
+    // };
+
+  //   let c = 0;
+  // const countUp = () => {
+  //   console.log(c++);
+  // }
+  // setInterval(countUp, 3000);
+
+
+
+    // let c = 0;
+    const view = async (event) => {
+        await fetch("/kakunin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nextWord:"りんご", fullword })
+      });
+      const response = await fetch("/kakunin");
+      const pre = await response.text();
+      console.log(pre);
+      para.innerText = `前の単語：${pre}`; 
+    
+    };
+    setInterval(view, 5000);
+
 
       window.onload = async (event) => {
         await fetch("/shiritori", {
@@ -108,6 +149,9 @@
       const response = await fetch("/shiritori");
       const previousWord = await response.text();
       console.log(previousWord);
+      if(pre != previousWord){
+        pre = previousWord;
+      }
       para.innerText = `前の単語：${previousWord}`; 
     
     };
@@ -150,6 +194,8 @@
         start.click();
       }
       const previousWord = await response.text();
+      console.log(previousWord);
+
       const para = document.querySelector("#previousWord");
       fullword.push(previousWord);
       count ++;

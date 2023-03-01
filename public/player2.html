@@ -96,8 +96,23 @@
       const history= document.getElementById("history");
       const historyBody = document.getElementById("history-body");
       const historyButton = document.getElementById("history-button");
+      let pre;
       let fullword = [];
       let count = 0;
+
+      const view = async (event) => {
+        await fetch("/kakunin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nextWord:"りんご", fullword })
+      });
+      const response = await fetch("/kakunin");
+      const pre = await response.text();
+      console.log(pre);
+      para.innerText = `前の単語：${pre}`; 
+    
+    };
+    setInterval(view, 5000);
 
       window.onload = async (event) => {
         await fetch("/shiritori2", {
@@ -150,6 +165,50 @@
       }
       const previousWord = await response.text();
       const para = document.querySelector("#previousWord");
+        //   location.reload();
+        console.log(previousWord);
+
+      fullword.push(previousWord);
+      count ++;
+      para.innerText = `前の単語：${previousWord}`;
+      word.value = "";
+      if(fullword.length != 0){
+        const paragraph = document.createElement("p");
+        let textNode = document.createTextNode(fullword[count - 1]);
+        paragraph.appendChild (textNode);
+        historyBody.appendChild(paragraph);
+      }
+    };
+
+
+    document.querySelector("#nextWordSendButton").onclick = async (event) => {
+      const nextWord = document.querySelector("#nextWordInput").value;
+      const response = await fetch("/shiritori2", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nextWord, fullword })
+      });
+      if(response.status / 100 === 4){
+        word.value = "";
+        alert(await response.text());
+      }
+      if(response.status / 100 === 3){
+        let u = await response.text();
+        word.value = "";
+        gameover.style.display = "block";
+        gameoverBody.innerText = `しりとりが続いた回数: ${count}`;
+        while(historyBody.firstChild){
+          historyBody.removeChild(historyBody.firstChild);
+        }
+        fullword = [];
+        count = 0;
+        start.click();
+      }
+      const previousWord = await response.text();
+      const para = document.querySelector("#previousWord");
+        //   location.reload();
+        console.log(previousWord);
+
       fullword.push(previousWord);
       count ++;
       para.innerText = `前の単語：${previousWord}`;
